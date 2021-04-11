@@ -1,11 +1,9 @@
 package ua.zhurba.testtask.controller;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.assertj.core.api.Assertions;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.Test;
 
 import org.junit.runner.RunWith;
@@ -41,9 +39,9 @@ public class CityControllerTest {
     @Test
     public void testGetCity() throws Exception {
         City city = new City();
-        city.setId(UUID.randomUUID());
+        city.setId(1234);
         city.setName("London");
-        city.setTemperature("25");
+        city.setTemp((double) 25);
 
         Mockito.when(cityService.getCity(city.getId())).thenReturn(city);
 
@@ -61,12 +59,12 @@ public class CityControllerTest {
     public void testCreateCity() throws Exception {
         City createCity = new City();
         createCity.setName("London");
-        createCity.setTemperature("25");
+        createCity.setTemp(25.0);
 
         City readCity = new City();
-        readCity.setId(UUID.randomUUID());
+        readCity.setId(1234);
         readCity.setName("London");
-        readCity.setTemperature("25");
+        readCity.setTemp(25.0);
 
         Mockito.when(cityService.createCity(createCity)).thenReturn(readCity);
 
@@ -84,7 +82,7 @@ public class CityControllerTest {
     public void testUpdateCity() throws Exception {
         City updateCity = new City();
         updateCity.setName("Kharkiv");
-        updateCity.setTemperature("15");
+        updateCity.setTemp(15.0);
 
         City readCity = createCity();
 
@@ -108,9 +106,9 @@ public class CityControllerTest {
 
     private City createCity() {
         City city = new City();
-        city.setId(UUID.randomUUID());
+        city.setId(1234);
         city.setName("Lviv");
-        city.setTemperature("20");
+        city.setTemp(20.0);
         return city;
     }
 

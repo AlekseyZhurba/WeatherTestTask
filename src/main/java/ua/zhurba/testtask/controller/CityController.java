@@ -15,7 +15,7 @@ public class CityController {
     private CityService cityService;
 
     @GetMapping("/{id}")
-    public City getCity(@PathVariable UUID id) {
+    public City getCity(@PathVariable Integer id) {
         return cityService.getCity(id);
     }
 
@@ -25,12 +25,12 @@ public class CityController {
     }
 
     @PutMapping("/{id}")
-    public City updateCity(@PathVariable UUID id, @RequestBody City city) {
+    public City updateCity(@PathVariable Integer id, @RequestBody City city) {
         return cityService.updateCity(id, city);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCity(@PathVariable UUID id) {
+    public void deleteCity(@PathVariable Integer id) {
         cityService.deleteCity(id);
     }
 }

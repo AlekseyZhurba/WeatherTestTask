@@ -6,11 +6,11 @@
 
     <changeSet id="create table city" author="zhurba">
         <createTable tableName="city">
-            <column name="id" type="uuid">
+            <column name="id" type="int">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="varchar(50)"/>
-            <column name="temperature" type="varchar(10)"/>
+            <column name="temp" type="double"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>
