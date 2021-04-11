@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.zhurba.testtask.client.WeatherClient;
 import ua.zhurba.testtask.domain.City;
 import ua.zhurba.testtask.repository.CityRepository;
-import ua.zhurba.testtask.service.importer.TemperatureImporterService;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -31,10 +30,10 @@ public class WeatherImportJob {
     private boolean enabled;
 
     @Transactional(readOnly = true)
-    @Scheduled( cron = "${update.temperature.of.city}")
+    @Scheduled(cron = "${update.temperature.of.city}")
     @PostConstruct
     void updateTemperatureOfCityJob() {
-        if(!enabled){
+        if (!enabled) {
             log.info("Import is enabled");
         }
 
@@ -46,7 +45,7 @@ public class WeatherImportJob {
         log.info("Job started");
         List<String> cityNames = cityRepository.getAllName();
         log.info("Starting import of temperature");
-        for (String cityName : cityNames){
+        for (String cityName : cityNames) {
             City city = weatherClient.getCityWeather(cityName);
             temperatureImporterService.importTemperature(city.getName());
         }
