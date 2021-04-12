@@ -19,7 +19,7 @@ public class WeatherClientTest {
     public void testGetWeather() {
         String cityName = "Dnipro";
         City city = weatherClient.getCityWeather(cityName);
-        System.out.println(weatherClient.getCityWeather(cityName));
+
         Assert.assertEquals(cityName, city.getName());
     }
 }

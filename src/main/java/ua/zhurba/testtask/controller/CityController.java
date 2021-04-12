@@ -1,11 +1,11 @@
 package ua.zhurba.testtask.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.zhurba.testtask.domain.City;
 import ua.zhurba.testtask.service.CityService;
 
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/cities")
@@ -18,6 +18,15 @@ public class CityController {
     public City getCity(@PathVariable Integer id) {
         return cityService.getCity(id);
     }
+
+    @GetMapping("/{id}/weather/current")
+    public String getCityTemperature(@PathVariable Integer id, Model model) {
+        City city = cityService.getCity(id);
+        model.addAttribute("name", city.getName());
+        model.addAttribute("temp", city.getTemp());
+        return "index";
+    }
+
 
     @PostMapping
     public City createCity(@RequestBody City city) {

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.zhurba.testtask.client.WeatherClient;
 import ua.zhurba.testtask.domain.City;
 import ua.zhurba.testtask.repository.CityRepository;
+import ua.zhurba.testtask.service.importer.TemperatureImporterService;
 
 import javax.annotation.PostConstruct;
 import java.util.List;

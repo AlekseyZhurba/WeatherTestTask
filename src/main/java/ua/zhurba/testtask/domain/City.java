@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -19,16 +20,18 @@ import java.util.UUID;
 public class City {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
+    @JsonDeserialize
+    @JsonSerialize
     private Double temp;
 
     @SuppressWarnings("unchecked")
     @JsonProperty("main")
     private void unpackNested(Map<String,Object> main) {
-        this.temp = (Double)main.get("temp");
+        this.temp = (Double) main.get("temp") ;
     }
 }

@@ -41,7 +41,7 @@ public class CityControllerTest {
         City city = new City();
         city.setId(1234);
         city.setName("London");
-        city.setTemp((double) 25);
+        city.setTemp(25d);
 
         Mockito.when(cityService.getCity(city.getId())).thenReturn(city);
 
@@ -59,12 +59,12 @@ public class CityControllerTest {
     public void testCreateCity() throws Exception {
         City createCity = new City();
         createCity.setName("London");
-        createCity.setTemp(25.0);
+        createCity.setTemp(25d);
 
         City readCity = new City();
         readCity.setId(1234);
         readCity.setName("London");
-        readCity.setTemp(25.0);
+        readCity.setTemp(25d);
 
         Mockito.when(cityService.createCity(createCity)).thenReturn(readCity);
 
@@ -82,7 +82,7 @@ public class CityControllerTest {
     public void testUpdateCity() throws Exception {
         City updateCity = new City();
         updateCity.setName("Kharkiv");
-        updateCity.setTemp(15.0);
+        updateCity.setTemp(15d);
 
         City readCity = createCity();
 
@@ -108,7 +108,7 @@ public class CityControllerTest {
         City city = new City();
         city.setId(1234);
         city.setName("Lviv");
-        city.setTemp(20.0);
+        city.setTemp(20d);
         return city;
     }
 

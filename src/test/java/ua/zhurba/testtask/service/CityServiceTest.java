@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import ua.zhurba.testtask.domain.City;
 import ua.zhurba.testtask.repository.CityRepository;
@@ -14,7 +15,7 @@ import ua.zhurba.testtask.repository.CityRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-//@Sql(statements = "delete from city", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+@Sql(statements = "delete from city", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class CityServiceTest {
 
     @Autowired
@@ -36,7 +37,7 @@ public class CityServiceTest {
     public void testCreateCity() {
         City city = new City();
         city.setName("Lviv");
-        city.setTemp(10.0);
+        city.setTemp(10d);
         cityService.createCity(city);
 
         Assert.assertNotNull(city.getId());
@@ -51,7 +52,7 @@ public class CityServiceTest {
 
         City updateCity = new City();
         updateCity.setName("Kharkiv");
-        updateCity.setTemp(17.0);
+        updateCity.setTemp(17d);
 
         city = cityService.updateCity(city.getId(), updateCity);
         Assert.assertNotNull(city.getName());
@@ -62,7 +63,7 @@ public class CityServiceTest {
     }
 
     @Test
-    public void testDeleteCity(){
+    public void testDeleteCity() {
         City city = createCity();
         Assert.assertTrue(cityRepository.existsById(city.getId()));
 
@@ -70,10 +71,11 @@ public class CityServiceTest {
         Assert.assertFalse(cityRepository.existsById(city.getId()));
     }
 
-    private City createCity(){
+    private City createCity() {
         City city = new City();
+        city.setId(356);
         city.setName("Dnipro");
-        city.setTemp(25.0);
+        city.setTemp(25d);
         city = cityRepository.save(city);
         return city;
     }
